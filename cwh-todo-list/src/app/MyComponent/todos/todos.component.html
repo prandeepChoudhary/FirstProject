@@ -1,3 +1,14 @@
-<div *ngFor="let todo of todos">
-    <app-todo-item [todo]="todo" (onDeleteTodo)="deleteTodo($event)"></app-todo-item>
+<div class="container">
+    <h1 class="text-center mb-3">Todo List by Prandeep</h1>
+    <app-add-todo (onAddTodo)="onAddTodo($event)"></app-add-todo>
+
+    <h4>Todo List</h4>
+
+    @if(todos.length === 0){
+    <p>No todos available.</p>
+    }@else {
+    <div *ngFor="let todo of todos; index as i">
+        <app-todo-item [todo]="todo" [i]="i" (onDeleteTodo)="deleteTodo($event)"
+            (onCheckTodo)="checkTodo($event)"></app-todo-item>
+    </div>}
 </div>
